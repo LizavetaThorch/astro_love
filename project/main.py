@@ -1,15 +1,13 @@
 import telebot
 from telebot import types
-# import os
-# from dotenv import load_dotenv
+import os
+from dotenv import load_dotenv
 
 # # Загрузка переменных окружения из файла .env
-# load_dotenv()
-# BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+load_dotenv()
+BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 
-# bot = telebot.TeleBot(BOT_TOKEN)
-
-bot = telebot.TeleBot('7566850087:AAFv7vWuzj60esH234Lx16Ox9-okcYH9fnY')
+bot = telebot.TeleBot(BOT_TOKEN)
 
 # Обработка ввода пользователя
 @bot.message_handler()
@@ -44,7 +42,7 @@ def hello(message):
 # Обращение в поддержку
 @bot.message_handler(commands=['help'])
 def help(message):
-    bot.send_message(message.chat.id, 'Если что-то поломалось пишите @EllabetDce')
+    bot.send_message(message.chat.id, 'По вем вопросом пишите @heroineVM\nА если что-то поломалось пишите @EllabetDce')
 
 
 # Обработчик сообщений с файлами (фото, видео и т.д.)
