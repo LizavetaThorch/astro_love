@@ -44,6 +44,9 @@ def info(message):
 
     elif message.text.lower() == '/clear_users' and message.from_user.id == ALLOWED_USER_ID:
         clear_users(message)
+
+    elif message.text.lower() == '/clear_blacklist' and message.from_user.id == ALLOWED_USER_ID:
+        clear_blacklist(message)
    
     # elif message.text.lower() == '/id':
     #     #bot.send_message(message.chat.id, f'ID: {message.from_user.id}\nUsername: {message.from_user.username}')
@@ -54,7 +57,6 @@ def info(message):
 
     else:
         bot.delete_message(message.chat.id, message.message_id)
-
 
 
 
@@ -137,7 +139,7 @@ def list_users(message):
 @bot.message_handler(commands=['clear_users'])
 def clear_users(message):
     users.clear()
-    bot.send_message(message.chat.id, 'Список пользователей был успешно очищен 🧹')
+    bot.send_message(message.chat.id, 'Список пользователей пуст 🧹')
 
 
 
@@ -161,9 +163,9 @@ def remove_user(message):
     if user_id_to_remove is not None:
         blacklist.add(user_id_to_remove)
         del users[user_id_to_remove]
-        bot.send_message(message.chat.id, f"Пользователь с идентификатором @{identifier} был удален и добавлен в черный список")
+        bot.send_message(message.chat.id, f"Пользователь @{identifier} удален и добавлен в черный список")
     else:
-        bot.send_message(message.chat.id, f"Пользователь с идентификатором @{identifier} не найден")
+        bot.send_message(message.chat.id, f"Пользователь @{identifier} не найден")
 
 
 ########################################################################################################################################################
@@ -212,6 +214,16 @@ def unblacklist_user(message):
         bot.send_message(message.chat.id, f"Пользователь с ID {user_id_to_unblock} был удален из черного списка и возвращен в список пользователей")
     else:
         bot.send_message(message.chat.id, f"Пользователь с ID {user_id_to_unblock} не найден в черном списке")
+
+
+
+# Очистка черного списка (только для админа)
+@bot.message_handler(commands=['clear_blacklist'])
+def clear_blacklist(message):
+    blacklist.clear()
+    bot.send_message(message.chat.id, 'Черный список пуст 🧹')
+
+
 
 
 bot.infinity_polling()
