@@ -12,7 +12,7 @@ BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 bot = telebot.TeleBot(BOT_TOKEN)
 
 ALLOWED_USER_ID = 898641850
-# ALLOWED_USER_ID = 490973300
+# ALLOWED_USER_ID = 490973300 # Лера
 my_chat_id = ALLOWED_USER_ID
 
 users = {}         # Словарь пользователей: {user_id: username}
@@ -75,7 +75,7 @@ def add_user(user_id, username, message):
 @bot.message_handler(commands=['start', 'find_love'])
 def hello(message):
     markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton('Найти свою судьбу', web_app= WebAppInfo(url= 'https://tvoyamatritsa.ru/')))
+    markup.add(types.InlineKeyboardButton('Найти свою судьбу', web_app= WebAppInfo(url= 'https://github.com/LizavetaThorch/astro_love/tree/main')))
     
     photo = open('./photo/Astrology.jpg', 'rb')
     bot.send_photo ( message.chat.id, photo, 
