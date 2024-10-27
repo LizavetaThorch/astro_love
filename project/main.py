@@ -75,7 +75,7 @@ def add_user(user_id, username, message):
 @bot.message_handler(commands=['start', 'find_love'])
 def hello(message):
     markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton('Найти свою судьбу', web_app= WebAppInfo(url= ' https://lizavetathorch.github.io/astro_love/')))
+    markup.add(types.InlineKeyboardButton('Найти свою судьбу', web_app= WebAppInfo(url= 'https://lizavetathorch.github.io/astro_love/')))
     
     photo = open('./photo/Astrology.jpg', 'rb')
     bot.send_photo ( message.chat.id, photo, 
